@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { StyleSheet, Text, View,ScrollView } from 'react-native';
+import { StyleSheet, Text, View,ScrollView,BackHandler } from 'react-native';
 import Header from './component/header'
 import { render } from 'react-dom';
 import axios from 'react-native-axios';
@@ -9,19 +9,24 @@ import MenuModal from './component/modal';
 export default class App extends React.Component {
   state={
 client:[],
-currentUser:{}
+currentUser:{},
+ismenuvisible:false
   }
   componentDidMount(){
     console.log("heo")
    axios.get('http://192.168.2.29/apibanque/client/read.php').then(res=>{
       const client = res.data.client;
        this.setState({client:client});
-   }) 
+   })
      
   }
-   togglerser=(user)=>{
-   let currentuser = user
+   togglerUser=(user)=>{
+   let currentUser = user
+   if(this.state.ismenuvisible){
+    currentuser={}
 
+   }
+    this.setState({ismenuvisible:!this.state.ismenuvisible,currentUser:currentUser})
 
    }
   
@@ -33,9 +38,9 @@ currentUser:{}
       <Header></Header>
       <View style={{ flex: 1 }}>
       <ScrollView>
-      <Client listclient={this.state.client}></Client>
+      <Client listclient={this.state.client} onPressCallBack={this.togglerUser}></Client>
       </ScrollView>
-      <MenuModal onPressCallBack={this.togglerser}></MenuModal>
+      <MenuModal isVisible={this.state.ismenuvisible} onDisableCallBack={this.togglerUser}></MenuModal>
       </View>
     </View>
   );

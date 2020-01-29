@@ -5,14 +5,8 @@ import {Card,List,ListItem,} from 'react-native-elements'
 
  class Client extends React.Component{
 render(){
-    renderItem = ({ listclient,onPressCallBack}) => (
-        <ListItem
-          title={listclient.lastname}
-          bottomDivider
-          chevron
-        />
-      )
-    // const listclient = this.props.listclient.map((Element,i)=> <ListItem title={Element.nom} rightTitle={Element.solde} ></ListItem>)
+  const onPressCallBack =this.props.onPressCallBack;  
+  // const listclient = this.props.listclient.map((Element,i)=> <ListItem title={Element.nom} rightTitle={Element.solde} ></ListItem>)
 return (
   <View>
 <Card title ="client">
@@ -22,7 +16,7 @@ return (
         key={user.id}
         title={user.lastname}
         subtitle={"Solde: "+user.solde+" credit: "+user.credit}
-        onPress={()=>onPressCallBack(item)}
+        onPress={()=>onPressCallBack(user)}
         bottomDivider
         chevron
       />
