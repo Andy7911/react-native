@@ -3,11 +3,11 @@
  import {style} from './style';
 
  
-  const Header=()=> (
-     <View style={{flex: 1, flexDirection: 'row' }}>
-        <View style={style.header}>
-            <Text>Banque App</Text>
-        </View>
+  const Header=({subText})=> (
+     <View style={style.header}>
+       
+  <Text>{subText}</Text>
+        
      </View>
  );
 

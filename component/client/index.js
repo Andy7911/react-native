@@ -8,8 +8,19 @@ render(){
   const onPressCallBack =this.props.onPressCallBack;  
   // const listclient = this.props.listclient.map((Element,i)=> <ListItem title={Element.nom} rightTitle={Element.solde} ></ListItem>)
 return (
-  <View>
-<Card title ="client">
+  <View style={{flex:1}}>
+<FlatList data={this.props.listclient}
+keyExtractor={(item)=>item.id}
+renderItem={({item})=>( <ListItem
+  key={item.id}
+  title={item.lastname}
+  subtitle={"Solde: "+item.solde+" credit: "+item.credit}
+  onPress={()=>onPressCallBack(item)}
+  bottomDivider
+  chevron
+/>)} />
+    
+{/* <Card title ="client">
   {
     this.props.listclient.map((user) => (
       <ListItem
@@ -22,7 +33,7 @@ return (
       />
     ))
   }
-</Card>
+</Card> */}
 </View>
 
 

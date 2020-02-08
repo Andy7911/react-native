@@ -15,7 +15,9 @@ import style from './style'
           <View style={style.modal}>
             <Text style={{fontSize:20,textAlign:'center'}}>Que voulez vous faire ?</Text>
             <Button title="edit" onPress={()=>onDisableCallBack()}></Button>
-            <Button  title="Delete" style={style.butttondelete}></Button>
+            <View style={style.butttondelete}>
+            <Button color="red" title="Delete" ></Button>
+            </View>
           </View>
         </Modal>
         </View>
